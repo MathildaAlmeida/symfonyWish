@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bucket List{% endblock %}
+
+{% block body %}
+    <h1>  Liste des idées :   </h1>
+
+    <ul>
+        {% for wish in liste_wish %}
+            <li> {{ wish.title}} <a href="{{ path('detail')}}"> Detail de l'idée  </a></li>
+
+        {% endfor %}
+    </ul>
+
+
+
+{% endblock %}
