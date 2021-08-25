@@ -22,12 +22,10 @@ class WishController extends AbstractController
     }
 
     /**
-     * @Route("/wish/detail/{$id}", name="detail")
+     * @Route("/wish/detail/{id}", name="detail")
      */
     public function detail(String $id): Response
     {
-        
-
         return $this->render('wish/detail.html.twig', [
             'id' => $id,
         ]);
