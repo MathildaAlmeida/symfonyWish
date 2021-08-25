@@ -24,12 +24,12 @@ class WishController extends AbstractController
     /**
      * @Route("/wish/detail/{$id}", name="detail")
      */
-    public function detail(WishRepository $repoWish,$id): Response
+    public function detail(String $id): Response
     {
-        $tab = $repoWish->findOneBy($id);
+        
 
         return $this->render('wish/detail.html.twig', [
-            'id' => $tab->getId() ,
+            'id' => $id,
         ]);
     }
 
