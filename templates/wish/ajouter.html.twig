@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bucket List{% endblock %}
+
+{% block body %}
+    <h1> Ajouter une idée :   </h1>
+
+    <div class="form-group form-control">
+        {{ form_start(formWish)}}
+    
+            <div class="input-group mb-3">
+             <p>Titre :  {{ form_widget(formWish.title)}}</p>
+             
+             </div>
+    
+            <div class="input-group mb-3">
+             <p>Description :  {{ form_widget(formWish.description)}}</p>
+            
+            </div>
+
+            <div class="input-group mb-3">
+            <p> Auteur : {{ form_widget(formWish.author)}} </p>
+            
+            </div>
+
+            <div class="input-group mb-3"> 
+            <p> Publié ? {{ form_widget(formWish.isPublished)}} </p>
+            
+            </div>
+
+            <div class="input-group mb-3">
+            <p> Date de création : {{ form_widget(formWish.dateCreated)}}</p>
+             
+            </div>
+    
+
+            <button type="submit">Ajouter</button>
+
+        {{ form_end(formWish)}}
+    </div>
+
+{% endblock %}
