@@ -16,7 +16,7 @@ class WishFormType extends AbstractType
             ->add('description')
             ->add('author')
             ->add('isPublished')
-            ->add('dateCreated')
+            ->add('dateCreated' )
         ;
     }
 
