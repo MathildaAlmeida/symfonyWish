@@ -5,12 +5,13 @@
 {% block body %}
     <h1>  Liste des idées :   </h1>
 
-    <ul>
+   <ul>
         {% for wish in liste_wish %}
-            <li> {{ wish.title}} <a href="{{ path('detail', {'id' : wish.id }) }}"> Detail de l'idée  </a></li>
-
+         
+            <li> {{ wish.title}}  {{ wish.dateCreated|date('d/m/Y')}}  </li>
+       
         {% endfor %}
-    </ul>
+     </ul>
 
     <a href="{{ path('wish_ajouter')}}"  class="btn btn-outline-dark"> Ajouter une idée </a>
 
