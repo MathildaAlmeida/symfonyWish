@@ -3,7 +3,7 @@
 {% block title %}Bucket List{% endblock %}
 
 {% block body %}
-    <h1> Ajouter un wish :   </h1>
+    <h1> Supprimer un wish :   </h1>
 
     <div class="form-group form-control">
         {{ form_start(formWish)}}
@@ -14,7 +14,7 @@
 
             <button type="submit" class="btn btn-success">Supprimer</button>
             <a href="{{ path('home')}}" class="btn btn-outline-dark" > Retour </a>
-            
+
         {{ form_end(formWish)}}
     </div>
     

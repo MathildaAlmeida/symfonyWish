@@ -20,7 +20,7 @@ class WishController extends AbstractController
     {
         $wish = new Wish();
         $formWish = $this->createForm(WishFormType::class,$wish);
-        $formWish->handleRequest($request); // hydrater $wish
+        $formWish->handleRequest($request); 
         if ($formWish->isSubmitted())
         {
             $wish->setIsPublished(true);
