@@ -8,6 +8,7 @@
     {% for w in wishes %}
         <li>
             {{w.id}} {{ w.title }}  {{ w.dateCreated|date("m/d/Y H:i:s") }}
+            <a href="{{ path('detail',{ id:w.id }) }}">Détail</a>
             <a href="{{ path('wish_modifier',{ id:w.id }) }}">Modifier</a>
             <a href="{{ path('wish_supprimer',{ id:w.id }) }}">Supprimer</a>
         </li>

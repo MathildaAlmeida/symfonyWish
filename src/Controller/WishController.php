@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WishController extends AbstractController
 {
+   
     /**
      * @Route("/admin/ajouter", name="ajouter")
      */

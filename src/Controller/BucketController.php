@@ -24,11 +24,12 @@ class BucketController extends AbstractController
     /**
      * @Route("/detail/{id}", name="detail")
      */
-    public function detail(Wish $wish): Response
+    public function detail(Wish $wish, WishRepository $repo): Response
     {
-       dd($wish);
+       //dd($wish);
+       $wishes =  $repo->findAll();
         return $this->render('bucket/detail.html.twig', [
-            'wishes' => '??'
+            'wishes' => $wishes
         ]);
     }
     

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bucket List{% endblock %}
+
+{% block body %}
+    <h1> Détail du wish :   </h1>
+
+    <ul>
+    {% for w in wishes %}
+        <li> {{ w.title }} </li>
+         <li>   {{w.description}} </li>
+          <li>  {{ w.author }} </li>
+          <li>  {{ w.dateCreated|date("m/d/Y H:i:s") }} </li>
+    {% endfor %}
+    </ul>
+    
+
+{% endblock %}
