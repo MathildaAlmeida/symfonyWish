@@ -82,6 +82,7 @@ class WishController extends AbstractController
         $formWish->handleRequest($request); 
         if ($formWish->isSubmitted())
         {
+            $em->remove($wish);
             $em->flush();
 
             return $this->redirectToRoute('home');
