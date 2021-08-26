@@ -1,7 +1,7 @@
 <header>    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-5">
-            <a class="navbar-brand" href="./"><h1><img src="{{ asset('img/favicon.png') }}" alt="logo" width="50"> Bucket List</h1></a>
+            <a class="navbar-brand" href="{{ path('home')}}"><h1><img src="{{ asset('img/favicon.png') }}" alt="logo" width="50"> Bucket List</h1></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             {% set route_name = app.request.attributes.get('_route')%}
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

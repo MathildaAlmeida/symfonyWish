@@ -78,18 +78,10 @@ class WishController extends AbstractController
      */
     public function supprimer(Wish $wish, Request $request,EntityManagerInterface  $em): Response
     {
-        $formWish = $this->createForm(WishFormType::class,$wish);
-        $formWish->handleRequest($request); 
-        if ($formWish->isSubmitted())
-        {
-            $em->remove($wish);
-            $em->flush();
+         $em->remove($wish);
+        $em->flush();
 
-            return $this->redirectToRoute('home');
-
-        }
-        return $this->render('wish/supprimer.html.twig',
-        [ 'formWish' => $formWish->createView() ]);
+        return $this->redirectToRoute('home');
     }
 
 }
