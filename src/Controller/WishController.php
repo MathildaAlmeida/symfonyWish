@@ -76,7 +76,7 @@ class WishController extends AbstractController
     /**
      * @Route("/admin/supprimer/{id}", name="wish_supprimer")
      */
-    public function supprimer(Wish $wish, Request $request,EntityManagerInterface  $em): Response
+    public function supprimer(Wish $wish,EntityManagerInterface  $em): Response
     {
          $em->remove($wish);
         $em->flush();

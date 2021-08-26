@@ -43,11 +43,10 @@ class Wish
     private $dateCreated;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Catgory::class)
-     * @ORM\JoinColumn(nullable=false)
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Category::class)
      */
-    private $idCategory;
+    private $category;
+
 
     public function getId(): ?int
     {
@@ -114,14 +113,14 @@ class Wish
         return $this;
     }
 
-    public function getIdCategory(): ?int
+    public function getCategory(): ?Category
     {
-        return $this->idCategory;
+        return $this->category;
     }
 
-    public function setIdCategory(int $idCategory): self
+    public function setCategory(?Category $category): self
     {
-        $this->idCategory = $idCategory;
+        $this->category = $category;
 
         return $this;
     }
