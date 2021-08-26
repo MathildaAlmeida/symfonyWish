@@ -14,48 +14,60 @@ use Symfony\Component\Routing\Annotation\Route;
 class WishController extends AbstractController
 {
     /**
-     * @Route("/wish", name="wish")
+     * @Route("/admin/ajouter", name="ajouter")
      */
-    public function wish(WishRepository $repoWish): Response
-    {
-        $tab = $repoWish->findBy(array(), array('dateCreated' => 'DESC'));
-
-        return $this->render('wish/wish.html.twig', [
-            'liste_wish' => $tab,
-        ]);
-    }
-
-    /**
-     * @Route("/wish/detail/{id}", name="detail")
-     */
-    public function detail(String $id): Response
-    {
-        return $this->render('wish/detail.html.twig', [
-            'id' => $id,
-        ]);
-    }
-
-    /**
-     * @Route("/wish/ajouter", name="wish_ajouter")
-     */
-    public function wishAjouter(Request $request, EntityManagerInterface $em): Response
+    public function ajouter(Request $request,EntityManagerInterface  $em): Response
     {
         $wish = new Wish();
-
-        $formWish = $this->createForm(WishFormType::class, $wish);
-        $formWish->handleRequest($request);
-
-        if ($formWish->isSubmitted()){
-            
+        $formWish = $this->createForm(WishFormType::class,$wish);
+        $formWish->handleRequest($request); // hydrater $wish
+        if ($formWish->isSubmitted())
+        {
+            $wish->setIsPublished(true);
+            $wish->setDateCreated(new \DateTime());
             $em->persist($wish);
             $em->flush();
-            return $this->redirectToRoute('wish');
+            // a faire plus tard rediriger vers la home du BO /admin
+            return $this->redirectToRoute('home');
+
         }
+        return $this->render('wish/ajouter.html.twig',
+        [ 'formWish' => $formWish->createView() ]);
+    }
 
+    /**
+     * @Route("/admin/modifier/{id}", name="wish_modifier")
+     */
+    public function modifier(Wish $wish, Request $request,EntityManagerInterface  $em): Response
+    {
+        $formWish = $this->createForm(WishFormType::class,$wish);
+        $formWish->handleRequest($request); 
+        if ($formWish->isSubmitted())
+        {
+            $wish->setIsPublished(true);
+            $wish->setDateCreated(new \DateTime());
+            $em->flush();
 
-        return $this->render('wish/ajouter.html.twig', [
-            'formWish' => $formWish->createView(),
-        ]); 
+            return $this->redirectToRoute('home');
+
+        }
+        return $this->render('wish/modifier.html.twig',
+        [ 'formWish' => $formWish->createView() ]);
+    }
+
+    /**
+     * @Route("/admin/ajout_rapide", name="wish_ajout_rapide")
+     */
+    public function ajoutRapide(Request $request, EntityManagerInterface $em): Response
+    {
+        // recuprer nom et prenom
+        $title = $request->get('title');
+        $wish = new Wish();
+        $wish->setTitle($title);
+        $em->persist($wish);
+        $em->flush();
+
+        return $this->redirectToRoute('home');
     }
 
 

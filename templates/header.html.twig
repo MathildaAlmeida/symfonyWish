@@ -3,13 +3,16 @@
         <div class="container px-5">
             <a class="navbar-brand" href="./"><h1><img src="{{ asset('img/favicon.png') }}" alt="logo" width="50"> Bucket List</h1></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./">Accueil</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./wish">Liste d'idée</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./apropos">A propos</a></li>
-                </ul>
-            </div>
+            {% set route_name = app.request.attributes.get('_route')%}
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link {% if route_name == 'home' %}active{% endif %}" aria-current="page" href="{{ path('home')}}">Home</a></li>
+                <li class="nav-item">
+                <a class="nav-link  {% if route_name == 'about_us' %}active{% endif %}" href="{{ path('about_us')}}">About Us</a></li>
+
+            </ul>
+            {{ route_name}}
+        </div>
         </div>
     </nav>
 </header>

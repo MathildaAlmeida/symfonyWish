@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Wish;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,10 +14,10 @@ class WishFormType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description')
-            ->add('author')
-            ->add('isPublished')
-            ->add('dateCreated' )
+            ->add('description', TextareaType::class)
+            //->add('author')
+            //->add('isPublished')
+            //->add('dateCreated' )
         ;
     }
 

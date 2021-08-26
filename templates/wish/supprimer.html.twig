@@ -10,12 +10,9 @@
     
             <div class="col-4 mb-4">
              <p>Titre :  {{ form_widget(formWish.title)}}</p>
-             
-             <p>Description :  {{ form_widget(formWish.description)}}</p>
-            
             </div>
 
-            <button type="submit" class="btn btn-success">Ajouter</button>
+            <button type="submit" class="btn btn-success">Supprimer</button>
             <a href="{{ path('home')}}" class="btn btn-outline-dark" > Retour </a>
         {{ form_end(formWish)}}
     </div>
