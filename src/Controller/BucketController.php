@@ -27,7 +27,9 @@ class BucketController extends AbstractController
     public function detail(Wish $wish, WishRepository $repo): Response
     {
        //dd($wish);
-       $wishes =  $repo->findAll();
+       $id = $wish->getId();
+       
+       $wishes =  $repo->findById($id);
         return $this->render('bucket/detail.html.twig', [
             'wishes' => $wishes
         ]);

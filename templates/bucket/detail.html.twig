@@ -7,12 +7,14 @@
 
     <ul>
     {% for w in wishes %}
-        <li> {{ w.title }} </li>
-         <li>   {{w.description}} </li>
-          <li>  {{ w.author }} </li>
-          <li>  {{ w.dateCreated|date("m/d/Y H:i:s") }} </li>
+        <li>Id :  {{ w.id }} </li>
+        <li> Titre : {{ w.title }} </li>
+        <li> Description :    {{w.description}} </li>
+        <li> Auteur :  {{ w.author }} </li>
+        <li> Date de création : {{ w.dateCreated|date("m/d/Y H:i:s") }} </li>
     {% endfor %}
     </ul>
+    <a href="{{ path('home')}}" class="btn btn-outline-dark" > Retour </a>
     
 
 {% endblock %}
