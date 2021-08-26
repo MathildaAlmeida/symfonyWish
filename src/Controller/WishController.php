@@ -27,12 +27,29 @@ class WishController extends AbstractController
             $wish->setDateCreated(new \DateTime());
             $em->persist($wish);
             $em->flush();
-            // a faire plus tard rediriger vers la home du BO /admin
+
             return $this->redirectToRoute('home');
 
         }
         return $this->render('wish/ajouter.html.twig',
         [ 'formWish' => $formWish->createView() ]);
+    }
+
+    /**
+     * @Route("/admin/ajout_rapide", name="wish_ajout_rapide")
+     */
+    public function ajoutRapide(Request $request, EntityManagerInterface $em): Response
+    {
+        // recuprer nom et prenom
+        $title = $request->get('title');
+        $wish = new Wish();
+        $wish->setTitle($title);
+        $wish->setIsPublished(true);
+        $wish->setDateCreated(new \DateTime());
+        $em->persist($wish);
+        $em->flush();
+
+        return $this->redirectToRoute('home');
     }
 
     /**
@@ -56,19 +73,21 @@ class WishController extends AbstractController
     }
 
     /**
-     * @Route("/admin/ajout_rapide", name="wish_ajout_rapide")
+     * @Route("/admin/supprimer/{id}", name="wish_supprimer")
      */
-    public function ajoutRapide(Request $request, EntityManagerInterface $em): Response
+    public function supprimer(Wish $wish, Request $request,EntityManagerInterface  $em): Response
     {
-        // recuprer nom et prenom
-        $title = $request->get('title');
-        $wish = new Wish();
-        $wish->setTitle($title);
-        $em->persist($wish);
-        $em->flush();
+        $formWish = $this->createForm(WishFormType::class,$wish);
+        $formWish->handleRequest($request); 
+        if ($formWish->isSubmitted())
+        {
+            $em->flush();
 
-        return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home');
+
+        }
+        return $this->render('wish/supprimer.html.twig',
+        [ 'formWish' => $formWish->createView() ]);
     }
-
 
 }

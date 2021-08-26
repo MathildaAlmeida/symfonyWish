@@ -9,6 +9,7 @@
         <li>
             {{w.id}} {{ w.title }}  {{ w.dateCreated|date("m/d/Y H:i:s") }}
             <a href="{{ path('wish_modifier',{ id:w.id }) }}">Modifier</a>
+            <a href="{{ path('wish_supprimer',{ id:w.id }) }}">Supprimer</a>
         </li>
     {% endfor %}
     </ul>
@@ -21,7 +22,7 @@
 
     <form action="{{ path('wish_ajout_rapide') }}" class="form-group form-control" method="POST">
         <div class="col-4 mb-4">
-            <p>Titre :  <input type="text" placeholder="un titre"> </input> </p>
+            <p>Titre :  <input type="text" name="title" placeholder="un titre"> </input> </p>
         </div>
         <button type="submit" class="btn btn-success">Ajouter</button>
     </form>
