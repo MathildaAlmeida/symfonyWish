@@ -8,9 +8,9 @@
     {% for w in wishes %}
         <li>
             {{w.id}} {{ w.title }}  {{ w.dateCreated|date("m/d/Y H:i:s") }}
-            <a href="{{ path('detail',{ id:w.id }) }}">Détail</a>
+            <a href="{{ path('detail',{ id:w.id }) }}"><img src="{{ asset('img/details.png') }}" alt="Détail" width="20"></a>
             <a href="{{ path('wish_modifier',{ id:w.id }) }}"><img src="{{ asset('img/bouton-modifier.png') }}" alt="Modifier" width="20"></a>
-            <a href="{{ path('wish_supprimer',{ id:w.id }) }}"><img src="{{ asset('img/supprimer.png') }}" alt="Suporimer" width="20"></a>
+            <a href="{{ path('wish_supprimer',{ id:w.id }) }}"><img src="{{ asset('img/supprimer.png') }}" alt="Supprimer" width="20"></a>
         </li>
     {% endfor %}
     </ul>
