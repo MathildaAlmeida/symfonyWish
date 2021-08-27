@@ -43,14 +43,16 @@ class WishController extends AbstractController
     /**
      * @Route("/admin/ajout_rapide", name="wish_ajout_rapide")
      */
-    public function ajoutRapide(Request $request, EntityManagerInterface $em): Response
+    public function ajoutRapide(Request $request, EntityManagerInterface $em, CategoryRepository $repoCateg): Response
     {
         // recuprer nom et prenom
         $title = $request->get('title');
         $wish = new Wish();
+        $categ = $repoCateg->find(5);
         $wish->setTitle($title);
         $wish->setIsPublished(true);
         $wish->setDateCreated(new \DateTime());
+        $wish->setCateg($categ);
         $em->persist($wish);
         $em->flush();
 
