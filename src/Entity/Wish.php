@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\WishRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,35 +19,35 @@ class Wish
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=250)
+     * @ORM\Column(type="string", length=50)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $author;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
     private $isPublished;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", length=255)
      */
     private $dateCreated;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="wishes")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $category;
-
+    private $categ;
 
     public function getId(): ?int
     {
@@ -82,7 +83,7 @@ class Wish
         return $this->author;
     }
 
-    public function setAuthor(string $author): self
+    public function setAuthor(?string $author): self
     {
         $this->author = $author;
 
@@ -94,33 +95,33 @@ class Wish
         return $this->isPublished;
     }
 
-    public function setIsPublished(?bool $isPublished): self
+    public function setIsPublished(bool $isPublished): self
     {
         $this->isPublished = $isPublished;
 
         return $this;
     }
 
-    public function getDateCreated(): ?\DateTimeInterface
+    public function getDateCreated(): ?DateTime
     {
         return $this->dateCreated;
     }
 
-    public function setDateCreated(?\DateTimeInterface $dateCreated): self
+    public function setDateCreated(DateTime $dateCreated): self
     {
         $this->dateCreated = $dateCreated;
 
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getCateg(): ?Category
     {
-        return $this->category;
+        return $this->categ;
     }
 
-    public function setCategory(?Category $category): self
+    public function setCateg(?Category $categ): self
     {
-        $this->category = $category;
+        $this->categ = $categ;
 
         return $this;
     }

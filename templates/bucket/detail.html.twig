@@ -12,6 +12,7 @@
         <li> Description :    {{w.description}} </li>
         <li> Auteur :  {{ w.author }} </li>
         <li> Date de création : {{ w.dateCreated|date("m/d/Y H:i:s") }} </li>
+        <li> Catégorie : {{ w.categ.name }} </li>
     {% endfor %}
     </ul>
     <a href="{{ path('home')}}" class="btn btn-outline-dark" > Retour </a>

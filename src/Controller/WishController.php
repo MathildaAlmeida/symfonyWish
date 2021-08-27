@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Wish;
 use App\Form\WishFormType;
+use App\Repository\CategoryRepository;
 use App\Repository\WishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +22,7 @@ class WishController extends AbstractController
     public function ajouter(Request $request,EntityManagerInterface  $em): Response
     {
         $wish = new Wish();
+        
         $formWish = $this->createForm(WishFormType::class,$wish);
         $formWish->handleRequest($request); 
         if ($formWish->isSubmitted())
@@ -33,7 +36,8 @@ class WishController extends AbstractController
 
         }
         return $this->render('wish/ajouter.html.twig',
-        [ 'formWish' => $formWish->createView() ]);
+        [ 'formWish' => $formWish->createView()
+        ]);
     }
 
     /**

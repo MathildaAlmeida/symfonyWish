@@ -4,18 +4,30 @@
 
 {% block body %}
 <h1>Bucket List</h1>
-    <ul>
+    
+    
+    <table class="table table-striped mt-4">
+    <tbody>
     {% for w in wishes %}
-        <li>
-            {{w.id}} {{ w.title }}  {{ w.dateCreated|date("m/d/Y H:i:s") }}
-            <a href="{{ path('detail',{ id:w.id }) }}"><img src="{{ asset('img/details.png') }}" alt="Détail" width="20"></a>
-            <a href="{{ path('wish_modifier',{ id:w.id }) }}"><img src="{{ asset('img/bouton-modifier.png') }}" alt="Modifier" width="20"></a>
-            <a 
-            onclik=" return confirm( 'Supprimer : {{ w.title}} ?') " 
+
+        <tr>
+        <td> {{ w.title }}  </td>
+         
+         <td> <a href="{{ path('detail',{ id:w.id }) }}"><img src="{{ asset('img/details.png') }}" alt="Détail" width="20"></a> </td>
+        
+        <td> <a href="{{ path('wish_modifier',{ id:w.id }) }}"><img src="{{ asset('img/bouton-modifier.png') }}" alt="Modifier" width="20"></a></td>
+         
+         <td> <a onclick="return confirm('Supprimer :{{ w.title }} ?')"
             href="{{ path('wish_supprimer',{ id:w.id }) }}"><img src="{{ asset('img/supprimer.png') }}" alt="Supprimer" width="20"></a>
-        </li>
+        </td>
+
+        </tr>
+
     {% endfor %}
-    </ul>
+    </tbody>
+	</table>
+
+    
    <br>
 
     <a href="{{ path('ajouter')}}" type="button" class="btn btn-success">Ajouter un wish</a>

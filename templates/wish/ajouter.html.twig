@@ -9,10 +9,11 @@
         {{ form_start(formWish)}}
     
             <div class="col-4 mb-4">
-             <p>Titre * :  {{ form_widget(formWish.title)}}</p>
+                <p>Titre * :  {{ form_widget(formWish.title)}}</p>
              
-             <p>Description :  {{ form_widget(formWish.description)}}</p>
-            
+                <p>Description :  {{ form_widget(formWish.description)}}</p>
+                <p>Catégorie * :  {{ form_widget(formWish.categ)}} </p>
+
             </div>
             <p> * Obligatoire </p>
 
